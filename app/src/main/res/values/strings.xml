@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">Aula02</string>
-    <string name="Hello">Hello</string>
+    <string name="Hello" translatable="false">Hello</string>
 </resources>
