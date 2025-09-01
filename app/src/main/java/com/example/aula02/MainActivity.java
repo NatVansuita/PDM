@@ -5,54 +5,45 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import java.time.LocalDate;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
-
-    int contador;
+    Button button;
+    EditText editTextMin, editTextMax;
+    TextView tv;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        Log.d( "ciclo_vida",  "Oncrea");
-    }
+        button = findViewById(R.id.button);
+        editTextMin = findViewById(R.id.edMin);
+        editTextMax = findViewById(R.id.edMax);
+        tv = findViewById(R.id.tvResultado);
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Log.d( "ciclo_vida", "onStart");
-    }
+        button.setOnClickListener(v -> {
+            Random random = new Random();
+            int min,max;
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.d( "ciclo_vida", "onResume");
-    }
+            min = Integer.parseInt(editTextMin.getText().toString());
+            max = Integer.parseInt(editTextMax.getText().toString());
+            int delta = max - min;
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.d( "ciclo_vida", "onPause");
-    }
+            int sortiado = random.nextInt(delta) + min;
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.d( "ciclo_vida", "onDestroy ");
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.d( "ciclo_vida", "onStop");
+            tv.setText(Integer.toString(sortiado));
+        });
     }
 }
 
