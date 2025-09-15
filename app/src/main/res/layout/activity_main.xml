@@ -34,7 +34,7 @@
         android:inputType="text" />
 
     <TextView
-        android:id="@+id/tVAltura"
+        android:id="@+id/tvAltura"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0"

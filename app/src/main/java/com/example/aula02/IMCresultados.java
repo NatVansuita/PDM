@@ -1,5 +1,6 @@
 package com.example.aula02;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -15,10 +16,19 @@ public class IMCresultados extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_imcresultados);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+        tvResultado = findViewById(R.id.tvResultado);
+        imageView2 = findViewById(R.id.imageView2);
+
+
+        //recuperando o intent
+        Intent i = getIntent();
+        Bundle b = i.getExtras();
+        Double peso = b.getDouble("peso");
+        Double altura = b.getDouble("altura");
+
+        //calculo do imc
+        Double imc = peso/(altura*altura);
+
+        tvRe
     }
 }
