@@ -30,8 +30,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         listView=findViewById(R.id.list);
-        planetaController = new PlanetaController();
-        ArrayAdapter<String> adapter=new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, planetaController.getNomePlanetas());
+        PlanetaAdapter adapter=new ArrayAdapter(this, R.layout.item_lista, planetaController.getPlanetas());
 
         listView.setAdapter(adapter);
 
