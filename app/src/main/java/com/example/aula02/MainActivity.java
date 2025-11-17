@@ -2,6 +2,7 @@ package com.example.aula02;
 
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -42,20 +43,28 @@ public class MainActivity extends AppCompatActivity {
         editText=findViewById(R.id.editTextText);
         listView=findViewById(R.id.listView);
 
+
         db = openOrCreateDatabase("app_databese", MODE_PRIVATE, null);
         db.execSQL("CREATE TABLE IF NOT EXISTS notas (id INTEGER PRIMARY KEY AUTOINCREMENT, titulo VARCHAR, texto TEXT)");
 
         button.setOnClickListener(v ->{
             String titulo = editText.getText().toString();
-            EditText editText = findViewById(R.id.editTextText);
+
             ContentValues cv = new ContentValues();
-            cv.put("titulo", "Nota do Usuario");
+            cv.put("titulo", titulo );
             cv.put("texto", titulo);
             db.insert("notas", null, cv);
             Toast.makeText(this, "Nota salva com sucesso!", Toast.LENGTH_SHORT).show();
 
-
+            carregarListagen();
         });
+        listView.setOnItemClickListener((parent, view, position, id)->{
+            String titulo = (String) parent.getItemAtPosition(position);
+            Intent intent =  new Intent(MainActivity.this, ExibeItem.class);
+            intent.putExtra("titulo", titulo);
+            startActivity(intent);
+        });
+        carregarListagen();
     }
 
     public void carregarListagen(){
@@ -63,8 +72,8 @@ public class MainActivity extends AppCompatActivity {
         Cursor cursor =db.rawQuery("SELECT * FROM notas", null);
             cursor.moveToFirst();
 
-            while (cursor.isAfterLast()){
-                String titulo=cursor.getString(cursor.getColumnIndex("titulo"));
+            while (!cursor.isAfterLast()){
+                String titulo = cursor.getString(cursor.getColumnIndex("titulo"));
                 titulos.add(titulo);
                 cursor.moveToNext();
             }
