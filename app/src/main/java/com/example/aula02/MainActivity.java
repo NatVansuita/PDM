@@ -1,39 +1,50 @@
 package com.example.aula02;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
-
+import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import java.util.ArrayList;
-
 public class MainActivity extends AppCompatActivity {
+    int i=0;
 
-    ArrayList<String> nomes;
-    ListView listView;
-    Button buttonSalvar;
-    EditText editText;
-    PlanetaController planetaController;
-
-
+    ListView lv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
-        listView=findViewById(R.id.list);
-        PlanetaAdapter adapter=new ArrayAdapter(this, R.layout.item_lista, planetaController.getPlanetas());
+        //recupera listview
+        lv= findViewById(R.id.listview);
 
-        listView.setAdapter(adapter);
+        PlanetaDao planetaDao=new PlanetaDao();// Data Source
 
 
+        PlanetaAdapter ap=new PlanetaAdapter(this,
+                R.layout.item_lista,
+                planetaDao.getPlatenas());
+        //Exibir lista de Planetas
+        lv.setAdapter(ap);
+
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Planeta p = planetaDao.getPlatenas().get(position);
+
+                //Criamos uma intenção para abrir nova atividade
+                Intent i = new Intent(getApplicationContext(),PlanetaController.class);
+                i.putExtra("planeta",p);
+                startActivity(i);
+            }
+        });
     }
 }
