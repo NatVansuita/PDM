@@ -1,6 +1,8 @@
 package com.example.aula02;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,16 +12,23 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class SegundaTela extends AppCompatActivity {
 
+    TextView tvTab, tvResult;
+    String resultado="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_primeira_tela);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+        Intent i = getIntent();
+        Bundle b = i.getExtras();
+        int num = b.getInt("num");
+        tvTab = findViewById(R.id.tvTabuada);
+        tvResult = findViewById(R.id.tvResultado);
+        tvTab.setText("Tabuada do " +  num);
 
-        });
+        for (int a=0; a<11; a++){
+            resultado = resultado + a+" x "+num+ " = " + a*num+"\n";
+            tvResult.setText(resultado);
+        }
     }
 }
