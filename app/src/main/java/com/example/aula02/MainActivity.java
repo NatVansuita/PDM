@@ -1,50 +1,46 @@
 package com.example.aula02;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
+
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
+import java.text.DecimalFormat;
 
 public class MainActivity extends AppCompatActivity {
-    Button button;
-    EditText edPeso,edAltura;
+    int i=0;
+    EditText edpeso,edaltura;
+    TextView tvresulado;
+    Button buttonCalcular;
 
-    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
+        Log.d("ciclo de vida","metodo onCreate");
         setContentView(R.layout.activity_main);
-        button = findViewById(R.id.button);
-        edPeso = findViewById(R.id.TTkg);
-        edAltura = findViewById(R.id.TTm);
+        edpeso=findViewById(R.id.edpeso);
+        edpeso.setText("");
+        edaltura=findViewById(R.id.edaltura);
+        edaltura.setText("");
 
-        button.setOnClickListener(V -> {
-            Intent i = new Intent(MainActivity.this,MainActivity.class);
-            Bundle bundle = new Bundle();
+        buttonCalcular=findViewById(R.id.button);
+        //define um tratamento para o click do botão
+        buttonCalcular.setOnClickListener(v->{
+            Intent intent = new Intent(getApplicationContext(), IMCresultados.class);
+            Double peso= Double.parseDouble(edpeso.getText().toString());
+            Double altura= Double.parseDouble(edaltura.getText().toString());
+            //Definindi parametros para o bundle peso e altura
+            intent.putExtra("peso", peso);
+            intent.putExtra("altura", altura);
 
-            double peso = Double.parseDouble(edPeso.getText().toString());
-            bundle.putDouble("peso",peso);
-
-            double altura = Double.parseDouble(edAltura.getText().toString());
-            bundle.putDouble("altura",altura);
-
-            i.putExtras(bundle);
-
-            startActivity(i);
-        });
-
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+            startActivity(intent);
         });
     }
+
 }
