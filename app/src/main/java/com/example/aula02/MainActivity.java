@@ -1,8 +1,11 @@
 package com.example.aula02;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,27 +14,24 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
-
-    String [] nomes = new String[] {"Natan", "Sarah", "Maria", "Anaju", "Romulo", "Clara"};
-    ListView listView;
-
+    int i=0;
+    String [] nomes= new String[] {"Natan","Sarah","Anaju", "Maria Clara","Clara"};
+    ListView lv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
-        listView=findViewById(R.id.list);
+        //recupera listview
+        lv= findViewById(R.id.listview);
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+        //Adaptador
+        ArrayAdapter<String> a=new ArrayAdapter(
+                this,
+                R.layout.item_lista,
+                R.id.textView,
+                nomes);
 
-        ArrayAdapter<String> adapter=new ArrayAdapter<>(getApplicationContext(),
-                android.R.layout.simple_list_item_1, android.R.id.text1, nomes);
-
-        listView.setAdapter(adapter);
+        lv.setAdapter(a);
     }
 }
