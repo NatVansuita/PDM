@@ -2,78 +2,68 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/tv"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/tvResultado"
-        android:layout_width="108dp"
-        android:layout_height="48dp"
-        android:autoSizeTextType="uniform"
-        android:text="--"
-        android:textAlignment="center"
-        android:textSize="24sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-"
+        android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintTop_toBottomOf="@+id/button" />
 
     <EditText
         android:id="@+id/edMin"
-        android:layout_width="179dp"
-        android:layout_height="61dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:ems="10"
         android:hint="0"
-        android:inputType="number"
+        android:inputType="text"
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toStartOf="@+id/edMax"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/edMax"
-        android:layout_width="185dp"
-        android:layout_height="62dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:ems="10"
         android:hint="100"
-        android:inputType="number"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/edMin"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintTop_toTopOf="@+id/edMin" />
 
     <Button
         android:id="@+id/button"
-        android:layout_width="210dp"
-        android:layout_height="89dp"
-        android:autoSizeTextType="uniform"
-        android:text="Sortear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sorter"
         app:layout_constraintBottom_toTopOf="@+id/tvResultado"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edMax"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintTop_toBottomOf="@+id/edMin" />
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="282dp"
-        android:layout_height="45dp"
+        android:layout_width="357dp"
+        android:layout_height="53dp"
         android:autoSizeTextType="uniform"
-        android:text="Entre um Intervalo"
-        app:layout_constraintBottom_toTopOf="@+id/edMin"
+        android:text="Entre com o intervalo"
+        android:textSize="4dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
