@@ -1,35 +1,46 @@
 package com.example.aula02;
 
-import android.annotation.SuppressLint;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
-
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView textView;
+    Button button;
+    TextView numero;
 
-    int contador;
+    int contador = 0;
 
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-
         setContentView(R.layout.activity_main);
-        textView = findViewById(R.id.tv);
-        textView.setText(Integer.toString(contador));
-        textView.setOnClickListener(v -> {
-            contador++;
-            textView.setText(Integer.toString(contador));
+
+        numero = findViewById(R.id.textView);
+        numero.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TextView numero = (TextView) view;
+                numero.setText("+");
+                contador++;
+                numero.setText(Integer.toString(contador));
+
+            }
         });
 
+        button = findViewById(R.id.button);
+        button.setText("Click aqui");
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Button b = (Button) view;
+                b.setText("+");
+                contador++;
+                numero.setText(Integer.toString(contador));
+            }
+        });
     }
 }
