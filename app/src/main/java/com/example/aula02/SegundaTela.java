@@ -12,23 +12,29 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class SegundaTela extends AppCompatActivity {
 
-    TextView tvTab, tvResult;
-    String resultado="";
+    TextView tvTab, tvResult; // Componentes que mostram o título e o resultado da tabuada
+    String resultado = ""; // Variável que acumula todas as linhas da tabuada
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
+        EdgeToEdge.enable(this); 
         setContentView(R.layout.activity_primeira_tela);
+
+        // Recupera o número enviado pela tela anterior
         Intent i = getIntent();
         Bundle b = i.getExtras();
         int num = b.getInt("num");
+
         tvTab = findViewById(R.id.tvTabuada);
         tvResult = findViewById(R.id.tvResultado);
-        tvTab.setText("Tabuada do " +  num);
 
-        for (int a=0; a<11; a++){
-            resultado = resultado + a+" x "+num+ " = " + a*num+"\n";
-            tvResult.setText(resultado);
+        tvTab.setText("Tabuada do " + num);
+
+        // Gera a tabuada do número recebido (0 até 10)
+        for (int a = 0; a < 11; a++) {
+            resultado = resultado + a + " x " + num + " = " + (a * num) + "\n";
+            tvResult.setText(resultado); // Atualiza o TextView com a tabuada
         }
     }
 }
