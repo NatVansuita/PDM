@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 TextView numero = (TextView) view; //Converte o elemento para TextView
-                numero.setText("+");
+                //numero.setText("+");
                 contador++; //Incrementa o contador
                 numero.setText(Integer.toString(contador)); //Converte o contador para texto e exibe no TextView
 
