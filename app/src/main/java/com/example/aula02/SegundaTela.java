@@ -32,8 +32,8 @@ public class SegundaTela extends AppCompatActivity {
         tvTab.setText("Tabuada do " + num);
 
         // Gera a tabuada do número recebido (0 até 10)
-        for (int a = 0; a < 11; a++) {
-            resultado = resultado + a + " x " + num + " = " + (a * num) + "\n";
+        for (int i = 0; i < 11; i++) {
+            resultado = resultado + i + " x " + num + " = " + (i * num) + "\n";
             tvResult.setText(resultado); // Atualiza o TextView com a tabuada
         }
     }
